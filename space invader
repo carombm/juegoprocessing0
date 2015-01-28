@@ -1,0 +1,60 @@
+int[] coordenadasXinvasor={int(random (500)), int (random (500)), int(random(500)),int(random(500)),int(random(500)),int(random(500)),int(random(100)),int(random(500)),int(random(500)),int(random(500))};
+int[] coordenadasYinvasor={10,10,10,10,10,10,10,10,10,10};
+    int diametroInvasor=35;
+  
+void setup (){
+  size (700,700);
+     }
+ 
+void draw(){
+
+  background (255);
+   arma();
+  invasores();
+ 
+}
+
+
+void arma(){
+  fill (228,230,233);
+  stroke (color(128,130,133));
+ 
+    fill(255,0,0);
+  ellipse(mouseX-1,600,90,60);
+}
+
+
+void invasores(){
+  stroke(0,0,0);
+  fill (20,0,0);
+   
+  for (int i=0; i<10; i++){
+    ellipse (coordenadasXinvasor[i],coordenadasYinvasor[i]++,diametroInvasor, diametroInvasor);
+     
+  }
+}
+//DISPARO (cuAndo hacemos click)
+ 
+void mousePressed (){
+  proyectil(mouseX);
+}
+ 
+//EL PROYECTIL
+void proyectil(int disparoX){
+  boolean acertar= false; 
+  for(int i=0; i<5; i++){
+      if((disparoX>=(coordenadasXinvasor[i]-diametroInvasor/2)) && (disparoX<=(coordenadasXinvasor[i]+diametroInvasor/2))){
+      acertar=true;
+      line(mouseX,565,mouseX,coordenadasYinvasor[i]);
+        ellipse(coordenadasXinvasor[i], coordenadasYinvasor[i], diametroInvasor+25, diametroInvasor+25);
+       coordenadasYinvasor[i]=int(random(500));
+        coordenadasYinvasor[i]=0;
+        
+      }
+  }
+   
+  if(acertar==false){
+    line(mouseX,200,mouseX,100);
+  }
+}
+ 
